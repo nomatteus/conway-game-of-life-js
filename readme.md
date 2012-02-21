@@ -1,4 +1,7 @@
-<!--Conway's Game of Life in Javascript/Canvas-->
+***NOTE: This is all work in progress. Nothing works. Nothing is right!***
+
+
+Conway's Game of Life in Javascript/Canvas
 ==========================================
 
 How to Run
