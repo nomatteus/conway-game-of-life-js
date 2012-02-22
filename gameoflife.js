@@ -1,28 +1,6 @@
 /* Author:
-
+            Matthew Ruten, 2012
 */
-
-/*
-var canvas = document.getElementById('life');
-
-if (canvas.getContext) {
-  var ctx = canvas.getContext('2d');
-
-
-  ctx.fillStyle = "rgb(200,0,0)";
-  ctx.fillRect (10, 10, 55, 50);
-  
-  ctx.fillStyle = "rgba(0, 0, 200, 0.5)";
-  ctx.fillRect (30, 30, 55, 50);
-
-
-
-}
-
-*/
-
-
-
 
 var GameOfLife = function(params){
   // User-set params
@@ -61,7 +39,6 @@ var GameOfLife = function(params){
         //      - Check all of its neighbours
         //      - Based on the rules, set the next gen cell to alive or dead
         
-
         var current_gen = cell_array,
             next_gen = [],      // New array to hold the next gen cells
             length_y = cell_array.length,
@@ -119,13 +96,13 @@ var GameOfLife = function(params){
               }
             }
 
-            console.log("Cell at x,y: " + x + "," + y + " has dead_count: " + dead_count + "and alive_count: " + alive_count);
+            //console.log("Cell at x,y: " + x + "," + y + " has dead_count: " + dead_count + "and alive_count: " + alive_count);
 
             next_gen[y][x] = new Cell(x, y, new_state);
-            console.log(next_gen[y][x]);
+            //console.log(next_gen[y][x]);
           }
         }
-        console.log(next_gen);
+        //console.log(next_gen);
 /*
         next_gen = cell_array;
         next_gen[0][0].setState("dead");
@@ -140,7 +117,6 @@ var GameOfLife = function(params){
   return {
     // Returns the next generation array of cells
     step: function(){
-      //console.log("step!");
       var next_gen = nextGenCells();
       // Set next gen as current cell array
       cell_array = next_gen;
@@ -150,9 +126,6 @@ var GameOfLife = function(params){
     // Returns the current generation array of cells
     getCurrentGenCells: function() {
       return cell_array;
-    },
-    getNextGenCels: function() {
-      return nextGenCells();
     }
   };
 };
@@ -163,13 +136,13 @@ var GameOfLife = function(params){
 // svg, or whatever other method you feel like. Just create a new <___>Display
 // Object!
 var GameDisplay = function(num_cells_x, num_cells_y, cell_width, cell_height, canvas_id) {
-  var canvas = document.getElementById('life'),
+  var canvas = document.getElementById(canvas_id),
       ctx = canvas.getContext && canvas.getContext('2d'),
       width_pixels = num_cells_x * cell_width,
       height_pixels = num_cells_y * cell_height,
       drawGridLines = function() {
         ctx.lineWidth = 1;
-        ctx.strokeStyle = "rgba(0, 0, 0, 0.03)";
+        ctx.strokeStyle = "rgba(255, 0, 0, 1)";
         ctx.beginPath();
         // foreach column
         for (var i = 0; i <= num_cells_x; i++) {
@@ -192,9 +165,6 @@ var GameDisplay = function(num_cells_x, num_cells_y, cell_width, cell_height, ca
           length_x = cell_array[y].length;
           // each column in rows
           for (x = 0; x < length_x; x++) {
-            //console.log(cell_array[y][x].getXPos());
-            //console.log(cell_array[y][x].getYPos());
-            //console.log(cell_array[y][x].getState());
             // Draw Cell on Canvas
             drawCell(cell_array[y][x]);
           }
@@ -260,63 +230,3 @@ var Cell = function(x_pos, y_pos, state) {
   };
 };
 
-
-/*
-var rules = {
-  live && neighbours == 0|1  => dies   (underpopulation),
-  live && neighbours == 2|3  => lives  (nextgen),
-  live && neighbours == 3+   => dies   (overpopulation),
-  dead && neighbours == 3    => live   (reproduction)
-}
-  */
-
-
-var starting_cells = [
-
-      [0,0,0,0,0],
-      [0,0,0,0,0],
-      [0,1,1,1,0],
-      [0,0,0,0,0],
-      [0,0,0,0,0]
-/*
-      [0,0,0,0,0],
-      [0,0,0,0,0],
-      [0,0,0,1,0],
-      [0,1,0,0,0],
-      [0,0,0,0,0]*/
-
-      /*[0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1],
-      [1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0],
-      [0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1],
-      [1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0],
-      [0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1],
-      [1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0],
-      [0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1],
-      [1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0],
-      [0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1],
-      [1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0],
-      [0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1],
-      [1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0],
-      [0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1],
-      [1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0],
-      [0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1],
-      [1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0],
-      [0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1],
-      [1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0],
-      [0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1]*/
-    ],
-    params = {
-      // Required
-      canvas_id:    "life",
-      // Optional
-      cell_width:   10,
-      cell_height:  10,
-      init_cells:   starting_cells
-    },
-    game = new GameOfLife(params);
-
-//setTimeout(game.step, 1500);
-//setTimeout(game.step, 1000);
-//setTimeout(game.step, 1500);
-
-var interval = setInterval(game.step, 1000);

@@ -220,8 +220,8 @@ td { vertical-align: top; }
 
 
 
-canvas#life {
-  /*border: 1px solid black;*/ 
+.life-game {
+  border: 1px solid #ccc;
 }
 
 
