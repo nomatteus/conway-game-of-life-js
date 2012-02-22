@@ -55,15 +55,84 @@ var GameOfLife = function(params){
       // Function to calculate the next generation of cells, based
       //  on the rules of the Game of Life
       nextGenCells = function() {
-        // TODO: ACtually do the calculations!!
-        // HARDCODING THIS FOR NOW, just to test animation
+        // Implement the Game of Life rules
+        // Simple algorithm:
+        //  - For each cell:
+        //      - Check all of its neighbours
+        //      - Based on the rules, set the next gen cell to alive or dead
         
-        var next_gen = cell_array;
+
+        var current_gen = cell_array,
+            next_gen = [],      // New array to hold the next gen cells
+            length_y = cell_array.length,
+            length_x,
+            y, x;
+        // each row
+        for (y = 0; y < length_y; y++) {
+          length_x = current_gen[y].length;
+          next_gen[y] = []; // Init new row
+          // each column in rows
+          for (x = 0; x < length_x; x++) {
+            //var state = (init_cells[y][x] == 1) ? 'alive' : 'dead';
+            var cell = current_gen[y][x];
+            // Calculate above/below/left/right row/column values
+            var row_above = (y-1 >= 0) ? y-1 : length_y-1; // If current cell is on first row, cell "above" is the last row (stitched)
+            var row_below = (y+1 <= length_y-1) ? y+1 : 0; // If current cell is in last row, then cell "below" is the first row
+            var column_left = (x-1 >= 0) ? x-1 : length_x - 1; // If current cell is on first row, then left cell is the last row
+            var column_right = (x+1 <= length_x-1) ? x+1 : 0; // If current cell is on last row, then right cell is in the first row
+
+            var neighbours = {
+              top_left: current_gen[row_above][column_left].clone(),
+              top_center: current_gen[row_above][x].clone(),
+              top_right: current_gen[row_above][column_right].clone(),
+              left: current_gen[y][column_left].clone(),
+              right: current_gen[y][column_right].clone(),
+              bottom_left: current_gen[row_below][column_left].clone(),
+              bottom_center: current_gen[row_below][x].clone(),
+              bottom_right: current_gen[row_below][column_right].clone()
+            };
+
+            var alive_count = 0;
+            var dead_count = 0;
+            for (var neighbour in neighbours) {
+              if (neighbours[neighbour].getState() == "dead") {
+                dead_count++;
+              } else {
+                alive_count++;
+              }
+            }
+
+            // Set new state to current state, but it may change below
+            var new_state = cell.getState();
+            if (cell.getState() == "alive") {
+              if (alive_count < 2 || alive_count > 3) {
+                // new state: dead, overpopulation/ underpopulation
+                new_state = "dead";
+              } else if (alive_count === 2 || alive_count === 3) {
+                // lives on to next generation
+                new_state = "alive";
+              }
+            } else {
+              if (alive_count === 3) {
+                // new state: live, reproduction
+                new_state = "alive";
+              }
+            }
+
+            console.log("Cell at x,y: " + x + "," + y + " has dead_count: " + dead_count + "and alive_count: " + alive_count);
+
+            next_gen[y][x] = new Cell(x, y, new_state);
+            console.log(next_gen[y][x]);
+          }
+        }
+        console.log(next_gen);
+/*
+        next_gen = cell_array;
         next_gen[0][0].setState("dead");
         next_gen[0][1].setState("alive");
         next_gen[1][0].setState("alive");
         next_gen[1][1].setState("dead");
-
+*/
         return next_gen;
       }
   ;
@@ -71,11 +140,11 @@ var GameOfLife = function(params){
   return {
     // Returns the next generation array of cells
     step: function(){
-      console.log("step!");
+      //console.log("step!");
       var next_gen = nextGenCells();
       // Set next gen as current cell array
       cell_array = next_gen;
-      console.log(next_gen);
+      //console.log(next_gen);
       display.update(cell_array);
     },
     // Returns the current generation array of cells
@@ -83,7 +152,7 @@ var GameOfLife = function(params){
       return cell_array;
     },
     getNextGenCels: function() {
-      
+      return nextGenCells();
     }
   };
 };
@@ -137,7 +206,7 @@ var GameDisplay = function(num_cells_x, num_cells_y, cell_width, cell_height, ca
             start_y = cell.getYPos() * cell_height;
         // draw rect from that point, to bottom right point by adding cell_height/cell_width
         if (cell.getState() == "alive") {
-          console.log("it's alive!");
+          //console.log("it's alive!");
           ctx.fillRect(start_x, start_y, cell_width, cell_height);
         } else {
           ctx.clearRect(start_x, start_y, cell_width, cell_height);
@@ -170,6 +239,9 @@ var Cell = function(x_pos, y_pos, state) {
       state = "dead",   // Cell state: dead or alive.
       asdf;*/
   return {
+    x_pos: x_pos,
+    y_pos: y_pos,
+    state: state,
     getXPos: function() {
       return x_pos;
     },
@@ -181,6 +253,9 @@ var Cell = function(x_pos, y_pos, state) {
     },
     setState: function(new_state) {
       state = new_state;
+    },
+    clone: function() {
+      return new Cell(x_pos, y_pos, state);
     }
   };
 };
@@ -198,9 +273,11 @@ var rules = {
 
 var starting_cells = [
 
-      [1,0],
-      [0,1]
-
+      [0,0,0,0,0],
+      [0,0,0,0,0],
+      [0,1,1,1,0],
+      [0,0,0,0,0],
+      [0,0,0,0,0]
 /*
       [0,0,0,0,0],
       [0,0,0,0,0],
@@ -238,6 +315,8 @@ var starting_cells = [
     },
     game = new GameOfLife(params);
 
-setTimeout(game.step, 1000);
+//setTimeout(game.step, 1500);
+//setTimeout(game.step, 1000);
+//setTimeout(game.step, 1500);
 
-//var interval = setInterval(game.step, 1000);
+var interval = setInterval(game.step, 1000);
