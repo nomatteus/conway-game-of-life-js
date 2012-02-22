@@ -1,6 +1,3 @@
-***NOTE: This is all work in progress. Nothing works. Nothing is right!***
-
-
 Conway's Game of Life in Javascript/Canvas
 ==========================================
 
@@ -60,11 +57,3 @@ example, it will update every second, but you can modify it to use any milliseco
 You can stop the animation by calling clearInterval:
 
     clearInterval(interval);
-
-
-Tests
------
-
-Tests are written using the Jasmine framework, and are located in `js/spec/spec.js`.
-
-Open `js/SpecRunner.html` in your browser to run the test suite.
