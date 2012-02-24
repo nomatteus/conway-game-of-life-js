@@ -80,7 +80,7 @@ add_listeners(game2, "example2");
 
 
 var example3_cells = [];
-var rand_num = Math.floor(Math.random()*100);
+var rand_num = Math.floor(Math.random()*100)+10;
 for (var i=0; i < rand_num; i++) {
   example3_cells[i] = [];
   for (var j=0; j < rand_num; j++) {
@@ -92,7 +92,8 @@ var game3 = new GameOfLife({
   canvas_id:    "life-example3",
   cell_width:   10,
   cell_height:  10,
-  init_cells:   example3_cells
+  init_cells:   example3_cells,
+  colourful:    true
 });
 add_listeners(game3, "example3");
 
@@ -206,7 +207,8 @@ var game5 = new GameOfLife({
   canvas_id:    "life-example5",
   cell_width:   8,
   cell_height:  8,
-  init_cells:   example5_cells
+  init_cells:   example5_cells,
+  colourful:    true
 });
 add_listeners(game5, "example5");
 

@@ -11,8 +11,10 @@ var GameOfLife = function(params){
       init_cells  = params["init_cells"]  || [],
       canvas_id   = params["canvas_id"]   || "life",
 
+      colourful   = params["colourful"] || params["colorful"] || false,
+
       cell_array = [],
-      display     = new GameDisplay(num_cells_x, num_cells_y, cell_width, cell_height, canvas_id),
+      display     = new GameDisplay(num_cells_x, num_cells_y, cell_width, cell_height, canvas_id, colourful),
       interval = null,    // Will store reference to setInterval method -- this should maybe be part of GameDisplay
       init        = function() {
         // Convert init_cells array of 0's and 1's to actual Cell objects
@@ -144,7 +146,7 @@ var GameOfLife = function(params){
 // too much extra code. i.e. if you want to display the game using HTML tables,
 // svg, or whatever other method you feel like. Just create a new <___>Display
 // Object!
-var GameDisplay = function(num_cells_x, num_cells_y, cell_width, cell_height, canvas_id) {
+var GameDisplay = function(num_cells_x, num_cells_y, cell_width, cell_height, canvas_id, colourful) {
   var canvas = document.getElementById(canvas_id),
       ctx = canvas.getContext && canvas.getContext('2d'),
       width_pixels = num_cells_x * cell_width,
@@ -186,6 +188,13 @@ var GameDisplay = function(num_cells_x, num_cells_y, cell_width, cell_height, ca
         // draw rect from that point, to bottom right point by adding cell_height/cell_width
         if (cell.getState() == "alive") {
           //console.log("it's alive!");
+          if (colourful === true) {
+            var r=Math.floor(Math.random()*256),
+                g=Math.floor(Math.random()*256),
+                b=Math.floor(Math.random()*256),
+                a=(Math.floor(Math.random()*6)+5)/10; // rand between 0.5 and 1.0
+            ctx.fillStyle = "rgba(" + r + "," + g + "," + b + "," + a + ")";
+          }
           ctx.fillRect(start_x, start_y, cell_width, cell_height);
         } else {
           ctx.clearRect(start_x, start_y, cell_width, cell_height);
@@ -199,7 +208,8 @@ var GameDisplay = function(num_cells_x, num_cells_y, cell_width, cell_height, ca
         canvas.width = width_pixels;
         canvas.height = height_pixels;
 
-        drawGridLines();
+        // No grid lines, for now!
+        //drawGridLines();
       };
   init();
   return {

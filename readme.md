@@ -7,6 +7,8 @@ Examples
 View examples of this script in action here:  
 <http://nomatteus.github.com/conway-game-of-life-js/examples/>
 
+*Note: Best viewed in Chrome*
+
 What is Conway's Game of Life?
 ------------------------------
 
@@ -39,8 +41,6 @@ Here's a sample with parameters:
     ],
     params = {
       canvas_id:    "life",
-      grid_width:   100,
-      grid_height:  100,
       cell_width:   10,
       cell_height:  10,
       init_cells:   starting_cells
@@ -52,7 +52,6 @@ Advance the game to the next step:
 
     game.step();
 
-
 To run this as an animation, just set an interval to call game.step(). In this
 example, it will update every second, but you can modify it to use any millisecond value:
 
@@ -61,5 +60,26 @@ example, it will update every second, but you can modify it to use any milliseco
 You can stop the animation by calling clearInterval:
 
     clearInterval(interval);
+
+Parameters
+----------
+
+    // DOM ID of <canvas> element
+    canvas_id:    "life"
+
+    // Pixel width/height of a single cell
+    cell_width:   10,
+    cell_height:  10,
+
+    // Multi-dimensional Array of Cell Starting Positions
+    init_cells:   starting_cells
+
+    // If true, each cell is assigned a random RGBA colour value
+    colourful:    true
+
+    // Alternate spelling works too ;)
+    // colorful:     true
+
+
 
 ***See `examples` folder for more working demos.***
