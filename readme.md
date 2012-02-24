@@ -4,6 +4,12 @@ Conway's Game of Life in Javascript/Canvas
 View examples of this script in action here:  
 <http://nomatteus.github.com/conway-game-of-life-js/examples/>
 
+What is Conway's Game of Life?
+------------------------------
+
+Wikipedia has a great article, including many examples:  
+<http://en.wikipedia.org/wiki/Conway's_Game_of_Life>
+
 How to Run
 ----------
 
