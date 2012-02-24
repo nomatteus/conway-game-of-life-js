@@ -1,10 +1,11 @@
 Conway's Game of Life in Javascript/Canvas
 ==========================================
 
+View examples of this script in action here:  
+<http://nomatteus.github.com/conway-game-of-life-js/examples/>
+
 How to Run
 ----------
-
-**See `examples` folder for some demoes of how to run.**
 
 Create new GameOfLife object, and pass it the grid size, cell size, 
 a canvas ID, and an array containing the starting cells:
@@ -51,3 +52,5 @@ example, it will update every second, but you can modify it to use any milliseco
 You can stop the animation by calling clearInterval:
 
     clearInterval(interval);
+
+***See `examples` folder for more working demos.***
