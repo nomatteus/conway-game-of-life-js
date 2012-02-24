@@ -1,7 +1,7 @@
 Conway's Game of Life in Javascript/Canvas
 ==========================================
 
-View examples of this script in action here:  
+**View examples of this script in action here:**  
 <http://nomatteus.github.com/conway-game-of-life-js/examples/>
 
 What is Conway's Game of Life?
