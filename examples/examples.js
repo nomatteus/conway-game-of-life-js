@@ -1,22 +1,3 @@
-var example1_cells = [
-  [0,0,0,0,0,0,0,0,0],
-  [0,0,0,0,0,0,0,0,0],
-  [0,0,0,0,0,0,0,0,0],
-  [0,0,0,0,1,0,0,0,0],
-  [0,0,0,0,0,1,0,0,0],
-  [0,0,0,1,1,1,0,0,0],
-  [0,0,0,0,0,0,0,0,0],
-  [0,0,0,0,0,0,0,0,0],
-  [0,0,0,0,0,0,0,0,0]
-];
-
-var game1 = new GameOfLife({
-  canvas_id:    "life-example1",
-  cell_width:   10,
-  cell_height:  10,
-  init_cells:   example1_cells
-});
-
 function game_toggle(game, force) {
   var interval = game.getInterval();
   if (force == "stop" || interval !== null) {
@@ -39,7 +20,27 @@ function add_listeners(game, example_num) {
     game.step();
   });
 }
+
+var example1_cells = [
+  [0,0,0,0,0,0,0,0,0],
+  [0,0,0,0,0,0,0,0,0],
+  [0,0,0,0,0,0,0,0,0],
+  [0,0,0,0,1,0,0,0,0],
+  [0,0,0,0,0,1,0,0,0],
+  [0,0,0,1,1,1,0,0,0],
+  [0,0,0,0,0,0,0,0,0],
+  [0,0,0,0,0,0,0,0,0],
+  [0,0,0,0,0,0,0,0,0]
+];
+
+var game1 = new GameOfLife({
+  canvas_id:    "life-example1",
+  cell_width:   10,
+  cell_height:  10,
+  init_cells:   example1_cells
+});
 add_listeners(game1, "example1");
+
 
 
 
@@ -77,6 +78,7 @@ add_listeners(game2, "example2");
 
 
 
+
 var example3_cells = [];
 var rand_num = Math.floor(Math.random()*100);
 for (var i=0; i < rand_num; i++) {
@@ -93,6 +95,9 @@ var game3 = new GameOfLife({
   init_cells:   example3_cells
 });
 add_listeners(game3, "example3");
+
+
+
 
 
 
@@ -207,6 +212,7 @@ add_listeners(game5, "example5");
 
 
 
+
 var example6_cells = [
   [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
   [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
@@ -299,26 +305,5 @@ var game6 = new GameOfLife({
   init_cells:   example6_cells
 });
 add_listeners(game6, "example6");
-
-
-
-//setTimeout(game.step, 1500);
-//setTimeout(game.step, 1000);
-//setTimeout(game.step, 1500);
-
-//var interval = setInterval(game.step, 100);
-
-
-
-/*$(".life-game").click(function(){
-  params["canvas_id"] = $(this).attr("id");
-  //console.log(params);
-  var game = new GameOfLife(params);
-  //console.log(game);
-  game.step();
-  var interval = setInterval(game.step, 100);
-});*/
-
-
 
 
