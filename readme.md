@@ -7,8 +7,8 @@ View examples of this script in action here:
 What is Conway's Game of Life?
 ------------------------------
 
-Wikipedia has a great article, including many examples:  
-<http://en.wikipedia.org/wiki/Conway's_Game_of_Life>
+Wikipedia has a great article, including many examples: 
+[Conway's_Game_of_Life on Wikipedia](http://en.wikipedia.org/wiki/Conway's_Game_of_Life)
 
 How to Run
 ----------
