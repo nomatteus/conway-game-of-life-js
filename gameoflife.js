@@ -13,6 +13,7 @@ var GameOfLife = function(params){
 
       cell_array = [],
       display     = new GameDisplay(num_cells_x, num_cells_y, cell_width, cell_height, canvas_id),
+      interval = null,    // Will store reference to setInterval method -- this should maybe be part of GameDisplay
       init        = function() {
         // Convert init_cells array of 0's and 1's to actual Cell objects
         var length_y = init_cells.length,
@@ -126,6 +127,14 @@ var GameOfLife = function(params){
     // Returns the current generation array of cells
     getCurrentGenCells: function() {
       return cell_array;
+    },
+    // Add "The" to function name to reduce confusion
+    //  (even though we *could* technically use just setInterval)
+    setTheInterval: function(the_interval) {
+      interval = the_interval;
+    },
+    getInterval: function() {
+      return interval;
     }
   };
 };
