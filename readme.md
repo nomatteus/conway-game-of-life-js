@@ -83,3 +83,7 @@ Parameters
 
 
 ***See `examples` folder for more working demos.***
+
+-----
+
+![Thanks @bgilham](http://i.imgur.com/akdTTpk.png)
