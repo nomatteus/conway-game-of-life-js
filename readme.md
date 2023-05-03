@@ -5,7 +5,7 @@ Examples
 --------
 
 View examples of this script in action here:  
-<http://nomatteus.github.com/conway-game-of-life-js/examples/>
+<http://nomatteus.github.io/conway-game-of-life-js/examples/>
 
 *Note: Best viewed in Chrome*
 
